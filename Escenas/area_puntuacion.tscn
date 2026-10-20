@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c85h73kyv52l6"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fudbt"]
+normal = Vector2(1, 0)
+
+[node name="Area_puntuacion" type="Area2D" unique_id=1770246581]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=711403283]
+shape = SubResource("WorldBoundaryShape2D_fudbt")

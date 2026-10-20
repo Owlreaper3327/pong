@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dpi8c5f7d7u2h"]
+
+[ext_resource type="Texture2D" uid="uid://ntgqo4wusdyf" path="res://Recursos/Gráficos/Pong_sprite3.png" id="1_ofa05"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fudbt"]
+radius = 54.571056
+
+[node name="Portal_spawn" type="Area2D" unique_id=911662417]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=552828382]
+shape = SubResource("CircleShape2D_fudbt")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1515783916]
+texture = ExtResource("1_ofa05")

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dhg5hkubvnym4"]
+
+[ext_resource type="Script" uid="uid://bf6qe26bl87jo" path="res://Recursos/Scripts/hud_ingame.gd" id="1_3nrht"]
+[ext_resource type="PackedScene" uid="uid://c5mmlkfrlw7ra" path="res://Escenas/notificador.tscn" id="2_6s2a7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tt0rm"]
+font_size = 30
+outline_size = 12
+outline_color = Color(0.038397167, 0.038397167, 0.03839716, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fudbt"]
+font_size = 30
+outline_size = 12
+outline_color = Color(0.038397167, 0.038397167, 0.03839716, 1)
+
+[node name="HUD" type="CanvasLayer" unique_id=2090014934]
+script = ExtResource("1_3nrht")
+
+[node name="Puntuacion_p1" type="Label" parent="." unique_id=1181573041]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Jugador 1: 0"
+label_settings = SubResource("LabelSettings_tt0rm")
+
+[node name="Puntuacion_p2" type="Label" parent="." unique_id=1655956236]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -91.0
+offset_bottom = 39.0
+grow_horizontal = 0
+text = "Jugador 2: 0"
+label_settings = SubResource("LabelSettings_fudbt")
+
+[node name="Notificador" parent="." unique_id=1612117637 instance=ExtResource("2_6s2a7")]

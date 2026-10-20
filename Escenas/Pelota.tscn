@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://biounwts37ba7"]
+
+[ext_resource type="Texture2D" uid="uid://fp7dumgwdm5g" path="res://Recursos/Gráficos/Pong_sprite2.png" id="1_duk3h"]
+[ext_resource type="Script" uid="uid://smlx7wk047rg" path="res://Recursos/Scripts/pelota.gd" id="1_rvfdg"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dxyvw"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fudbt"]
+radius = 29.614185
+
+[node name="Pelota" type="RigidBody2D" unique_id=1093586872]
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_dxyvw")
+gravity_scale = 0.0
+script = ExtResource("1_rvfdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2079079716]
+shape = SubResource("CircleShape2D_fudbt")
+
+[node name="Pelota_forma" type="Sprite2D" parent="." unique_id=1918280824]
+texture = ExtResource("1_duk3h")

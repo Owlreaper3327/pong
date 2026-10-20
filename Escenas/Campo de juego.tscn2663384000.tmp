@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://ce32j23kqbkin"]
+
+[ext_resource type="Script" uid="uid://bjg1hq5aafkmg" path="res://Recursos/Scripts/game_manager.gd" id="1_4rlnm"]
+[ext_resource type="PackedScene" uid="uid://b2x5c2bqmx1sq" path="res://Escenas/limite.tscn" id="1_rklvb"]
+[ext_resource type="PackedScene" uid="uid://cnfpqyue0gq" path="res://Escenas/Paleta_jugador.tscn" id="2_4rlnm"]
+[ext_resource type="Script" uid="uid://b6oag7dwy1xy1" path="res://Recursos/Scripts/paleta_pc.gd" id="4_061q4"]
+[ext_resource type="PackedScene" uid="uid://c85h73kyv52l6" path="res://Escenas/area_puntuacion.tscn" id="4_otgpe"]
+[ext_resource type="PackedScene" uid="uid://biounwts37ba7" path="res://Escenas/Pelota.tscn" id="5_c1mn8"]
+[ext_resource type="PackedScene" uid="uid://dhg5hkubvnym4" path="res://Escenas/hud_ingame.tscn" id="7_1rdpm"]
+
+[node name="Campo" type="Node2D" unique_id=1178018637]
+script = ExtResource("1_4rlnm")
+
+[node name="camera" type="Camera2D" parent="." unique_id=2033474385]
+scale = Vector2(-19.725603, -8.063874)
+
+[node name="Limite inferior" parent="." unique_id=162375651 instance=ExtResource("1_rklvb")]
+position = Vector2(0, 330)
+
+[node name="Limitesuperior" parent="." unique_id=285045765 instance=ExtResource("1_rklvb")]
+position = Vector2(1, -330)
+scale = Vector2(-1, -1)
+
+[node name="Paleta_jugador" parent="." unique_id=1639751832 instance=ExtResource("2_4rlnm")]
+position = Vector2(-485, 1)
+
+[node name="Paleta_pc" parent="." unique_id=1615640181 instance=ExtResource("2_4rlnm")]
+position = Vector2(475, -1)
+script = ExtResource("4_061q4")
+
+[node name="Area_puntuacion" parent="." unique_id=1770246581 instance=ExtResource("4_otgpe")]
+position = Vector2(-624, 0)
+izquierda = true
+
+[node name="Area_puntuacion2" parent="." unique_id=487503262 instance=ExtResource("4_otgpe")]
+position = Vector2(624, 0)
+scale = Vector2(-1, -1)
+
+[node name="Pelota" parent="." unique_id=1093586872 instance=ExtResource("5_c1mn8")]
+linear_damp_mode = 1
+
+[node name="HUD" parent="." unique_id=2090014934 instance=ExtResource("7_1rdpm")]
+
+[connection signal="scored" from="Area_puntuacion" to="." method="_on_area_puntuacion_scored"]
+[connection signal="scored" from="Area_puntuacion2" to="." method="_on_area_puntuacion_2_scored"]
