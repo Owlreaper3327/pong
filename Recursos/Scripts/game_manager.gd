@@ -6,7 +6,7 @@ class_name GameManager;
 @onready var puntuacion_p2: int = 0;
 @onready var marcador: Notificador = $HUD/Notificador
 @onready var jugando = false
-@onready var victoria: int = 15
+@onready var victoria: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,12 +22,23 @@ func actualizar_puntuacion():
 	$HUD/Puntuacion_p1.text = p1
 	$HUD/Puntuacion_p2.text = p2
 
+func procesar_ganador() -> void:
+	
+	var p1_ganador: bool = puntuacion_p1 == 15;
+	
+	var texto_ganador: String = "Gana el jugador 1" if p1_ganador else "Gana el jugador 2";
+	$HUD/mensaje_ganador.text = texto_ganador;
+	$HUD/animador.play("mostrar_ganador")
+	pausar();
+	
+
 func score(izquierda:bool) -> void:
 	if izquierda:
 		puntuacion_p1 += 1;
 	else:
 		puntuacion_p2 +=1;
 	
+	var ganador: bool = puntuacion_p1 == victoria or puntuacion_p2 == victoria;
 	actualizar_puntuacion()
 	marcador.actualizar_marcador(puntuacion_p1, puntuacion_p2)
 	
@@ -35,9 +46,16 @@ func score(izquierda:bool) -> void:
 	#Hay que poner un retraso
 	jugando = false
 	await get_tree().create_timer(2).timeout
+	
+	if ganador:
+		self.procesar_ganador();
+		pausar();
+		return;
+	
 	$HUD/instruccion.visible = true
 	$Pelota.iniciar()
 	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -50,6 +68,15 @@ func _process(delta: float) -> void:
 	
 	pass
 
+func pausar() -> void:
+	
+	for i in self.get_children():
+		i.set_process(false);
+		i.set_physics_process(false);
+	
+	$HUD/instruccion.visible = false;
+	marcador.visible = false;
+	set_process(false);
 
 func _on_area_puntuacion_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	score(false)
